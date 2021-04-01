@@ -3,13 +3,22 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { LoginComponent } from './componentes/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CadastroComponent } from './componentes/cadastro/cadastro.component';
+import { SenhaComponent } from './componentes/senha/senha.component';
+import { FooterComponent } from './componentes/footer/footer.component';
+import { HeaderComponent } from './componentes/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    CadastroComponent,
+    SenhaComponent,
+    FooterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
