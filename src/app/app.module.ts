@@ -10,6 +10,7 @@ import { CadastroComponent } from './componentes/cadastro/cadastro.component';
 import { SenhaComponent } from './componentes/senha/senha.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { HeaderComponent } from './componentes/header/header.component';
+import { OngListagemComponent } from './componentes/ong-listagem/ong-listagem.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HeaderComponent } from './componentes/header/header.component';
     CadastroComponent,
     SenhaComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    OngListagemComponent
   ],
   imports: [
     BrowserModule,

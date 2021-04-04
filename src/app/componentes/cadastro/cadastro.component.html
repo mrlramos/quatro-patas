@@ -1,5 +1,86 @@
-<form action="">
-    <label for=""></label>
-    <input type="text">
+<app-header></app-header>
+<div class="principal">
+    <h3>Quero me cadastrar como: </h3>
 
-</form>
+    <button type="button" class="btn btn-primary" (click)="usuario('doador')">Doador</button>
+    <button type="button" class="btn btn-primary" (click)="usuario('ong')">ONG</button>
+
+    <div *ngIf="tipoUsuario == 'doador'">
+        <form action="">
+            <br><br>
+            <h3>Dados pessoais</h3>
+            <label for="">Nome Completo:</label>
+            <input type="text" maxlength="55">
+            <br>
+            <label for="">CPF:</label>
+            <input type="text" maxlength="14">
+            <br>
+            <label for="">Celular:</label>
+            <input type="text" maxlength="14">
+            <br>
+            <label for="">Data de nascimento:</label>
+            <input type="date" maxlength="8">
+            <br>
+            <label for="">Cidade:</label>
+            <input type="password" maxlength="14">
+            <br>
+            <br>
+            <h3>Dados para login</h3>
+            <label for="">E-mail:</label>
+            <input type="text" maxlength="14">
+            <br>
+            <label for="">Senha:</label>
+            <input type="password" maxlength="14">
+            <br>
+            <button type="button" class="btn btn-secondary" (click)="btn_voltar()">Voltar</button>
+            <button type="button" class="btn btn-success">Cadastrar</button>
+        </form>
+    </div>
+
+    <div *ngIf="tipoUsuario == 'ong'">
+        <form action="">
+            <br><br>
+            <h3>Dados da organização</h3>
+            <label for="">Nome:</label>
+            <input type="text" maxlength="55">
+            <br>
+            <label for="">CNPJ:</label>
+            <input type="text" maxlength="55">
+            <br>
+            <label for="">Quantidade de animais:</label>
+            <input type="text" maxlength="55">
+            <br>
+            <label for="">CEP:</label>
+            <input type="text" maxlength="14">
+            <br>
+            <label for="">Estado:</label>
+            <input type="text" maxlength="14">
+            <br>
+            <label for="">Cidade:</label>
+            <input type="text" maxlength="8">
+            <br>
+            <label for="">Bairro:</label>
+            <input type="text" maxlength="14">
+            <br>
+            <label for="">Rua:</label>
+            <input type="text" maxlength="14">
+            <br>
+            <label for="">Número:</label>
+            <input type="text" maxlength="14">
+            <br>
+            <label for="">Complemento:</label>
+            <input type="text" maxlength="14">
+            <br>
+            <br>
+            <h3>Dados para login</h3>
+            <label for="">E-mail:</label>
+            <input type="text" maxlength="14">
+            <br>
+            <label for="">Senha:</label>
+            <input type="password" maxlength="14">
+            <br>
+            <button type="button" class="btn btn-secondary" (click)="btn_voltar()">Voltar</button>
+            <button type="button" class="btn btn-success">Cadastrar</button>
+        </form>
+    </div>
+</div>
