@@ -17,24 +17,16 @@ h2 {
     color: #e02041;
 }
 
-button {
-    margin-right: 30%;
-}
-
-span {
-    margin-right: 1%;
-}
-
-a {
-    color: black;
-}
-
-.btn-danger {
-    width: 179px;
-    height: 30%;
+input {
+    border-radius: 5px;
+    width: 20%;
 }
 
 .btn-outline-danger {
+    margin-right: -40%;
+}
+
+.btn-secondary {
     margin-right: 0.5%;
 }
 
@@ -44,14 +36,14 @@ a {
     font-size: small;
 }
 
-#card-casos {
-    width:600px;
-	height:auto;
-	background-color:white;
-	border-radius: 20px;
+.mb-3 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
 }
 
-#interna {
-    margin-left: 32%;
-    margin-bottom: 2%;
+textarea.form-control {
+    height: 250px;
 }
+
+

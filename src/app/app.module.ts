@@ -11,6 +11,7 @@ import { SenhaComponent } from './componentes/senha/senha.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { HeaderComponent } from './componentes/header/header.component';
 import { OngListagemComponent } from './componentes/ong-listagem/ong-listagem.component';
+import { OngCadastroComponent } from './componentes/ong-cadastro/ong-cadastro.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { OngListagemComponent } from './componentes/ong-listagem/ong-listagem.co
     SenhaComponent,
     FooterComponent,
     HeaderComponent,
-    OngListagemComponent
+    OngListagemComponent,
+    OngCadastroComponent
   ],
   imports: [
     BrowserModule,
