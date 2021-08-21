@@ -41,6 +41,10 @@ export class DoadorDetalheComponent implements OnInit {
     private domSanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
+    if (window.localStorage.length < 1) {
+      this.router.navigate(['/']);
+    }
+
     const id = this.route.snapshot.paramMap.get('id');
 
     this.service.listarCasosPorId(id).subscribe(casos => 
@@ -66,5 +70,10 @@ export class DoadorDetalheComponent implements OnInit {
 
   mostraEmail() {
 
+  }
+
+  deslogar() {
+    window.localStorage.removeItem("user");
+    this.router.navigate(['/']);
   }
 }

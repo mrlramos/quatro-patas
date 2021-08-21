@@ -21,6 +21,8 @@ import { SenhaService } from './componentes/senha/senha.service';
 import { LoginService } from './componentes/login/login.service';
 import { DoadorListagemService } from './componentes/doador-listagem/doador-listagem.service';
 import { DoadorDetalheService } from './componentes/doador-detalhe/doador-detalhe.service';
+import { OngListagemService } from './componentes/ong-listagem/ong-listagem.service';
+
 
 
 import { HttpClientModule } from '@angular/common/http';
@@ -53,7 +55,8 @@ import { CommonModule } from '@angular/common';
     SenhaService,
     LoginService,
     DoadorListagemService,
-    DoadorDetalheService
+    DoadorDetalheService,
+    OngListagemService
   ],
   bootstrap: [AppComponent]
 })

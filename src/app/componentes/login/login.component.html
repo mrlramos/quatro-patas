@@ -12,6 +12,11 @@
             <input id="senha" type="password"class="form-control" name="senha" placeholder="Senha"
             ngModel maxlength="22" required #senha>    
         </div>
+        <div *ngIf="usuarioIncorreto">
+            <div>
+                Usuário incorreto
+            </div>
+        </div>
         <div>
             <button type="submit" class="btn btn-danger">Entrar</button>
         </div>
@@ -24,3 +29,4 @@
         <a routerLink="/senha" routerLinkActive="active">Esqueci a senha</a>
     </div>
 </div>
+  

@@ -9,11 +9,25 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  async login(dados) {
-    console.log("dados: " + dados);
+  async login(dados): Promise<any> {
+    let tipoUsuario;
+    let retorno;
 
-    var response = await this.http.post('https://localhost:44335/api/login', dados).pipe(delay(100)).toPromise();
+    retorno = await this.http.post('https://localhost:44335/api/login', dados).pipe(delay(100)).toPromise();
 
-    console.log("response: " + response);
+    if (retorno == 1) {
+      window.localStorage.setItem('user', dados.login);
+      tipoUsuario = "doador";
+    } else if (retorno == 2) {
+      window.localStorage.setItem('user', dados.login);
+      tipoUsuario = "ong";
+    } else {
+      tipoUsuario = "n/a";
+    }
+
+    console.log('tipo usuario:' + tipoUsuario);
+    console.log('retorno:' + retorno);
+
+    return retorno;
   }
 }

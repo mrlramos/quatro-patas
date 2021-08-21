@@ -13,22 +13,32 @@ export class OngCadastroComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    if (window.localStorage.length < 1) {
+      this.router.navigate(['/']);
+    }
   }
 
   btn_voltar(): void {
     this.router.navigate(['/ong']);
   }
 
-    onSelectFile(event) { // called each time file input changes
-        if (event.target.files && event.target.files[0]) {
-          var reader = new FileReader();
+  onSelectFile(event) { // called each time file input changes
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
 
-          reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-          reader.onload = (event) => { // called once readAsDataURL is completed
-            this.url = event.target.result;
-            console.log(this.url);
-          }
-        }
+      reader.onload = (event) => { // called once readAsDataURL is completed
+      this.url = event.target.result;
+      console.log(this.url);
+      }
     }
+  }
+
+  deslogar() {
+    window.localStorage.removeItem("user");
+    this.router.navigate(['/']);
+  }
+
+
 }

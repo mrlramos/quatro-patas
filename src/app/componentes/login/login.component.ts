@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 
 @Component({
@@ -8,12 +9,27 @@ import { LoginService } from './login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService: LoginService) { }
+  usuarioIncorreto: boolean;
+
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  onSubmitLogin(dados): void {
-    this.loginService.login(dados.value);
+  async onSubmitLogin(dados) {
+    let tipoUsuario;
+    
+    tipoUsuario = await this.loginService.login(dados.value);
+
+    console.log(tipoUsuario);
+
+    if (tipoUsuario == 1) {
+      this.router.navigate(['/doador']);
+    } else if (tipoUsuario == 2) {
+      this.router.navigate(['/ong']);
+    } else {
+      this.usuarioIncorreto = true;
+    }
   }
+  
 }
