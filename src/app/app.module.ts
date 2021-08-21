@@ -1,3 +1,4 @@
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -15,6 +16,16 @@ import { OngCadastroComponent } from './componentes/ong-cadastro/ong-cadastro.co
 import { DoadorListagemComponent } from './componentes/doador-listagem/doador-listagem.component';
 import { DoadorDetalheComponent } from './componentes/doador-detalhe/doador-detalhe.component';
 
+import { CadastroService } from './componentes/cadastro/cadastro.service';
+import { SenhaService } from './componentes/senha/senha.service';
+import { LoginService } from './componentes/login/login.service';
+import { DoadorListagemService } from './componentes/doador-listagem/doador-listagem.service';
+import { DoadorDetalheService } from './componentes/doador-detalhe/doador-detalhe.service';
+
+
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,9 +42,19 @@ import { DoadorDetalheComponent } from './componentes/doador-detalhe/doador-deta
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule,
+    CommonModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    CadastroService,
+    SenhaService,
+    LoginService,
+    DoadorListagemService,
+    DoadorDetalheService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

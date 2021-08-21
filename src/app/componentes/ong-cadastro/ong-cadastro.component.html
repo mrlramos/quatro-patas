@@ -31,6 +31,13 @@
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Valor em reais(R$)" aria-describedby="basic-addon1">
         </div>
+        <div class="input-group mb-3">
+            <label>Se possível, insira uma imagem do bichinho</label>
+        </div>
+            <div class="input-group mb-3">
+            <input type="file" class="form-control" (change)="onSelectFile($event)">
+        </div>
+        
         <button type="button" class="btn btn-secondary" (click)="btn_voltar()">Voltar</button>
         <button type="button" class="btn btn-primary">Cadastrar</button>
     </form>

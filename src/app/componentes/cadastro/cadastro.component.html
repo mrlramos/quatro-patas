@@ -6,81 +6,109 @@
     <button type="button" class="btn btn-primary" (click)="usuario('ong')">ONG</button>
 
     <div *ngIf="tipoUsuario == 'doador'">
-        <form action="">
+
+        <form #doador="ngForm" (ngSubmit)="onSubmitDoador(doador)">
+
             <br><br>
             <h3>Dados pessoais</h3>
-            <label for="">Nome Completo:</label>
-            <input type="text" maxlength="55">
+            <label>Nome Completo:</label>
+            <input id="nome" type="text" class="form-control" name="nome" 
+            ngModel pattern="[a-zA-Z ]*" maxlength="55" required #nome>
             <br>
-            <label for="">CPF:</label>
-            <input type="text" maxlength="14">
+            <label>CPF:</label>
+            <input class="form-control" name="cpf" ngModel 
+            pattern="[0-9]{11}" maxlength="11" required #cpf>
             <br>
-            <label for="">Celular:</label>
-            <input type="text" maxlength="14">
+            <label>Celular:</label>
+            <input name="celular" class="form-control" pattern="[0-9]{11}" 
+            maxlength="11" ngModel required #celular>
             <br>
-            <label for="">Data de nascimento:</label>
-            <input type="date" maxlength="8">
+            <label>Data de nascimento:</label>
+            <input type="date" name="nascimento" class="form-control" 
+            ngModel required #nascimento>
             <br>
-            <label for="">Cidade:</label>
-            <input type="password" maxlength="14">
-            <br>
-            <br>
+            <label>Cidade:</label>
+            <input name="cidade" class="form-control" 
+            ngModel required #cidade>
+
+            <br><br>
+
             <h3>Dados para login</h3>
-            <label for="">E-mail:</label>
-            <input type="text" maxlength="14">
+            <label>E-mail:</label>
+            <input name="email" class="form-control" 
+            ngModel required #email>
             <br>
-            <label for="">Senha:</label>
-            <input type="password" maxlength="14">
+            <label>Senha:</label>
+            <input name="senha" type="password" maxlength="14" class="form-control" 
+            ngModel required #senha>
             <br>
-            <button type="button" class="btn btn-secondary" (click)="btn_voltar()">Voltar</button>
-            <button type="button" class="btn btn-success">Cadastrar</button>
+            <button type="button" class="btn btn-secondary" (click)="btnVoltar()">Voltar</button>
+            <button type="submit" class="btn btn-success">Cadastrar</button>
+
         </form>
+
     </div>
 
     <div *ngIf="tipoUsuario == 'ong'">
-        <form action="">
+        <form #ong="ngForm" (ngSubmit)="onSubmitOng(ong)">
             <br><br>
             <h3>Dados da organização</h3>
-            <label for="">Nome:</label>
-            <input type="text" maxlength="55">
+            <label>Nome:</label>
+            <input id="nome" type="text" class="form-control" name="nome" 
+            ngModel pattern="[a-zA-Z ]*" maxlength="55" required #nome>
             <br>
-            <label for="">CNPJ:</label>
-            <input type="text" maxlength="55">
+            <label>Quantidade de animais:</label>
+            <input id="qtdAnimais" class="form-control" name="qtdAnimais" 
+            ngModel pattern="[0-9]*" maxlength="4" required #qtdAnimais>
             <br>
-            <label for="">Quantidade de animais:</label>
-            <input type="text" maxlength="55">
+            <label>CEP:</label>
+            <input id="cep" class="form-control" name="cep" 
+            ngModel pattern="[0-9]*" minlength="8" maxlength="8" required #cep>
             <br>
-            <label for="">CEP:</label>
-            <input type="text" maxlength="14">
+            <label>Estado:</label>
+            <input id="estado" type="text" class="form-control" name="estado" 
+            ngModel minlength="2" maxlength="2" required #estado>
             <br>
-            <label for="">Estado:</label>
-            <input type="text" maxlength="14">
+            <label>Cidade:</label>
+            <input id="cidade" type="text" class="form-control" name="cidade" 
+            ngModel pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*" maxlength="55" required #cidade>
             <br>
-            <label for="">Cidade:</label>
-            <input type="text" maxlength="8">
+            <label>Bairro:</label>
+            <input id="bairro" type="text" class="form-control" name="bairro" 
+            ngModel pattern="[a-zA-Z ]*" maxlength="55" required #bairro>
             <br>
-            <label for="">Bairro:</label>
-            <input type="text" maxlength="14">
+            <label>Rua:</label>
+            <input id="rua" type="text" class="form-control" name="rua" 
+            ngModel maxlength="22" required #rua>
             <br>
-            <label for="">Rua:</label>
-            <input type="text" maxlength="14">
+            <label>Número:</label>
+            <input id="numero" class="form-control" name="numero" 
+            ngModel pattern="[0-9]*" maxlength="5" required #numero>
             <br>
-            <label for="">Número:</label>
-            <input type="text" maxlength="14">
+            <label>Complemento:</label>
+            <input id="complemento" type="text" class="form-control" name="complemento" 
+            ngModel maxlength="14" required #complemento>
             <br>
-            <label for="">Complemento:</label>
-            <input type="text" maxlength="14">
+            <label>Celular:</label>
+            <input id="celular" class="form-control" name="celular" 
+            ngModel pattern="[0-9]*" minlength="11" maxlength="11" required #celular>
+            <br>
+            <label>E-mail:</label>
+            <input id="email" type="text" class="form-control" name="email" 
+            ngModel maxlength="14" required email #email>
             <br>
             <br>
             <h3>Dados para login</h3>
-            <label for="">E-mail:</label>
-            <input type="text" maxlength="14">
+            <label>Login:</label>
+            <input id="login" type="text" class="form-control" name="login" 
+            ngModel maxlength="55" required #login>
             <br>
-            <label for="">Senha:</label>
-            <input type="password" maxlength="14">
+            <label>Senha:</label>
+            <input id="senha" type="password" class="form-control" name="senha" 
+            ngModel minlength="6" maxlength="14" required #senha>
             <br>
-            <button type="button" class="btn btn-secondary" (click)="btn_voltar()">Voltar</button>
-            <button type="button" class="btn btn-success">Cadastrar</button>
+            <button type="button" class="btn btn-secondary" (click)="btnVoltar()">Voltar</button>
+            <button type="submit" class="btn btn-success">Cadastrar</button>
         </form>
     </div>
 </div>

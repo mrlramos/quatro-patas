@@ -1,7 +1,7 @@
 <div class="principal">
     <div class="row align-items-center">
         <div class="col">
-            <img align="left" src="/assets/conteudo/paw-print.svg" alt="">
+            <img class="logo" align="left" src="/assets/conteudo/paw-print.svg" alt="">
             <h2>4 Patas</h2>
         </div>
         <div class="col">
@@ -25,6 +25,8 @@
 
 <div id=interna>
     <div class="row">
+
+        
         <div class="col-4">
             <div id="card-casos">
                 <div class="card-body">
@@ -33,31 +35,36 @@
                             <h6 class="card-title"><b>Salve o dia!</b></h6>
                             <h6 class="card-title"><b>Seja o herói desse caso.</b></h6>
                             <p class="card-text">Entre em contato:</p>
-                            <button type="button" class="btn btn-primary">WhatsApp</button>
-                            <button type="button" class="btn btn-primary">E-mail</button>
+                            <button type="button" class="btn btn-primary" (click)="mostraWhats()">WhatsApp</button>
+                            <button type="button" class="btn btn-primary" (click)="mostraEmail()">E-mail</button>
                         </div>
                     </div>
                 </div>
             </div>
             <button type="button" class="btn btn-secondary" (click)="btn_voltar()">Voltar</button>
         </div>
+
+
         <div class="col-6">
             <div id="card-casos">
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
                             <h6 class="card-title"><b>CASO: </b></h6>
-                            <p class="card-text">Gato Felix</p>
+                            <p class="card-text">{{ caso.nome }}</p>
                             <h6 class="card-title"><b>DESCRIÇÃO: </b></h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                card's content. Some quick example text to build on the card title and make up the bulk of the
-                                card's content.</p>
+                            <p class="card-text">{{ caso.descricao }}</p>
                             <h6 class="card-title"><b>VALOR: </b></h6>
-                            <p class="card-text">R$100</p>
+                            <p class="card-text">R${{ caso.valor }}</p>
+                            <h6 class="card-title"><b>Bichinho: </b></h6>
+                            <img id=animal src="{{caso.imagem}}"/>
+                            <!-- <img [src]="caso.imagem"> -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
     </div>
 </div>

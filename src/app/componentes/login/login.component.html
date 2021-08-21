@@ -2,16 +2,20 @@
 <div class="principal">
     <h1>4 Patas</h1>
     <div>
-        <h2>Faça seu login</h2>
+        <h4>Faça seu login</h4>
     </div>
-    <div>
-        <input type="text" placeholder="ID">
-        <br>
-        <input type="password" placeholder="Senha">    
-    </div>
-    <div>
-        <button type="button" class="btn btn-danger">Entrar</button>
-    </div>
+    <form #login="ngForm" (ngSubmit)="onSubmitLogin(login)">
+        <div>
+            <input id="login" type="text" class="form-control" name="login" placeholder="Login"
+            ngModel pattern="[a-zA-Z ]*" maxlength="22" required #login>
+            <br>
+            <input id="senha" type="password"class="form-control" name="senha" placeholder="Senha"
+            ngModel maxlength="22" required #senha>    
+        </div>
+        <div>
+            <button type="submit" class="btn btn-danger">Entrar</button>
+        </div>
+    </form>
     <div>
         <span class="material-icons">login</span>
         <a routerLink="/cadastro" routerLinkActive="active">Não tenho cadastro</a>

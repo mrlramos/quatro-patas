@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CadastroService } from './cadastro.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -8,23 +9,42 @@ import { Router } from '@angular/router';
 })
 export class CadastroComponent implements OnInit {
 
-  tipoUsuario : string;
+  tipoUsuario: string;
 
-  constructor(private router: Router) { }
-
-  ngOnInit(): void {
+  constructor(private router: Router, private cadastroService: CadastroService) {
   }
 
-  usuario(tipoUsuario): void {
+  ngOnInit(): void {}
 
+  usuario(tipoUsuario): void {
     if (tipoUsuario == 'doador') {
       this.tipoUsuario = 'doador';
     } else 
       this.tipoUsuario = 'ong';
-
   }
 
-  btn_voltar(): void {
+  btnVoltar(): void {
     this.router.navigate(['/']);
+  }
+
+  onSubmitDoador(form): void {
+    console.log(form.value);
+    this.cadastroService.createDoador(form.value)
+      .subscribe(
+        success => console.log("Success"),
+        error => console.log(error),
+        () => console.log("OK")
+      );
+  }
+
+  onSubmitOng(form): void {
+    console.log(form.value);
+
+    this.cadastroService.test(form.value);
+      // .subscribe(
+      //   success => console.log("Success"),
+      //   error => console.log(error),
+      //   () => console.log("OK")
+      // );
   }
 }

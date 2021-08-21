@@ -1,11 +1,13 @@
 <app-header></app-header>
 <div class="principal">
-    <form action="">
+    <form [formGroup]="form" (ngSubmit)="enviarRecuperacaoSenha()">
         <label for="">Insira seu e-mail para recuperação da senha:</label>
         <br>
-        <input type="text">
+        <input id="email" name="email" type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && temErro('email')}">
         <br>
-        <button type="button" class="btn btn-secondary" (click)="btn_voltar()">Voltar</button>
-        <button type="button" class="btn btn-success">Enviar</button>
+        <button type="button" class="btn btn-secondary" (click)="btn_voltar()" data-toggle="modal" data-target="#exampleModal">Voltar</button>
+        <button type="submit" class="btn btn-success">Enviar</button>
+        <br>
+        <label class="envioEmail" *ngIf="emailEnviado == true">E-mail de recuperação de senha enviado para: <b>{{ email }}</b></label>
     </form>
 </div>

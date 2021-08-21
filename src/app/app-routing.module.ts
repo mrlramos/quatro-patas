@@ -35,7 +35,7 @@ const routes: Routes = [
     component: DoadorListagemComponent
   },
   {
-    path: 'doador/detalhe',
+    path: 'doador/detalhe/:id',
     component: DoadorDetalheComponent
   }
 ];
