@@ -14,6 +14,11 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
+    if (window.localStorage.length > 0 && window.localStorage.getItem('user').split("@").length > 1) {
+      this.router.navigate(['/doador']);
+    } else if (window.localStorage.length > 0 && window.localStorage.getItem('user').split("@").length == 1) {
+      this.router.navigate(['/ong']);
+    }
   }
 
   async onSubmitLogin(dados) {

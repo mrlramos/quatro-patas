@@ -22,6 +22,7 @@ import { LoginService } from './componentes/login/login.service';
 import { DoadorListagemService } from './componentes/doador-listagem/doador-listagem.service';
 import { DoadorDetalheService } from './componentes/doador-detalhe/doador-detalhe.service';
 import { OngListagemService } from './componentes/ong-listagem/ong-listagem.service';
+import { OngCadastroService } from './componentes/ong-cadastro/ong-cadastro.service';
 
 
 
@@ -56,7 +57,8 @@ import { CommonModule } from '@angular/common';
     LoginService,
     DoadorListagemService,
     DoadorDetalheService,
-    OngListagemService
+    OngListagemService,
+    OngCadastroService
   ],
   bootstrap: [AppComponent]
 })

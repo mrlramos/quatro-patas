@@ -1,11 +1,11 @@
 <div class="principal">
     <div class="row align-items-center">
         <div class="col">
-            <img align="left" src="/assets/conteudo/paw-print.svg" alt="">
+            <img class="logo" align="left" src="/assets/conteudo/paw-print.svg" alt="">
             <h2>4 Patas</h2>
         </div>
         <div class="col">
-            Bem vindo, {{ ong }}
+            Bem vindo, {{ ongNome }}
         </div>
         <div class="col">
             <button type="button" class="btn btn-danger" (click)="btn_criar_caso()"><b>Cadastrar novo caso</b></button>
@@ -24,19 +24,19 @@
 
 </div>
 
-<div id=interna>
+<div *ngFor="let caso of casos" id=interna>
     <div id="card-casos">
         <div class="card-body">
             <div class="row">
                 <div class="col">
                     <h6 class="card-title"><b>CASO: </b></h6>
-                    <p class="card-text">Gato Felix</p>
+                    <p class="card-text">{{ caso.nome }}</p>
                     <h6 class="card-title"><b>DESCRIÇÃO: </b></h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content. Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
+                    <p class="card-text">{{ caso.descricao }}</p>
                     <h6 class="card-title"><b>VALOR: </b></h6>
-                    <p class="card-text">R$100</p>
+                    <p class="card-text">R${{ caso.valor }}</p>
+                    <h6 class="card-title"><b>Bichinho: </b> <p class="card-text"><img id=animal src="{{caso.imagem}}"/></p></h6>
+                    
                 </div>
                 <div class="col-md-1">
                     <a title="Excluir caso" routerLink="/ong" routerLinkActive="active"><span class="material-icons">

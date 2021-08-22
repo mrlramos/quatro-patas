@@ -18,6 +18,8 @@ export class DoadorListagemComponent implements OnInit {
   ngOnInit(): void {
     if (window.localStorage.length < 1) {
       this.router.navigate(['/']);
+    } else if (window.localStorage.getItem('user').split("@").length == 1) {
+      this.router.navigate(['/ong']);
     } else {
       this.doadorListagemService.getNomeDoador().subscribe(casos => this.doador = casos);
 

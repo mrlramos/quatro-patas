@@ -1,7 +1,7 @@
 <div class="principal">
     <div class="row align-items-center">
         <div class="col">
-            <img align="left" src="/assets/conteudo/paw-print.svg" alt="">
+            <img class="logo" align="left" src="/assets/conteudo/paw-print.svg" alt="">
             <h2>4 Patas</h2>
         </div>
         <div class="col">
@@ -34,6 +34,7 @@
                     <p class="card-text">{{ caso.descricao }}</p>
                     <h6 class="card-title"><b>VALOR: </b></h6>
                     <p class="card-text">R${{ caso.valor }}</p>
+                    <h6 class="card-title"><b>Bichinho: </b> <p class="card-text"><img id=animal src="{{caso.imagem}}"/></p></h6>
                 </div>
                 <div class="col-md-1">
                     <a title="Detalhes" routerLink="/doador/detalhe/{{ caso.id }}" routerLinkActive="active"><span class="material-icons">

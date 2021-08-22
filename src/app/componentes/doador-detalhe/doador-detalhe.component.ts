@@ -43,6 +43,8 @@ export class DoadorDetalheComponent implements OnInit {
   ngOnInit(): void {
     if (window.localStorage.length < 1) {
       this.router.navigate(['/']);
+    } else if (window.localStorage.getItem('user').split("@").length == 1) {
+      this.router.navigate(['/ong']);
     }
 
     const id = this.route.snapshot.paramMap.get('id');

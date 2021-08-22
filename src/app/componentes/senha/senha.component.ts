@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router'
+import { email } from './email';
 import { SenhaService } from './senha.service';
 
 @Component({
@@ -16,6 +17,8 @@ export class SenhaComponent implements OnInit {
   emailEnviado = false;
   emailNaoEncontrado = false;
   email: string;
+  retorno: email;
+  emailIncorreto = false; 
 
 
   constructor(private router: Router, private senhaService: SenhaService, private formBuilder: FormBuilder ) { }
@@ -30,19 +33,39 @@ export class SenhaComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  enviarRecuperacaoSenha(): any {
-    this.submitted = true;
-    this.email = this.form.value.email;
+  async enviarRecuperacaoSenha() {
 
-    this.senhaService.busca(this.email).subscribe(
-      (res: any) => {
-      },
-      error => console.log(error),
-      () => console.log("OK"),
-    );
+    this.emailEnviado = false;
+    this.emailIncorreto = false;
 
-    this.emailEnviado = true;
-    this.form.reset();
+    try {
+
+      this.submitted = true;
+      this.email = this.form.value.email;
+
+      var teste = await this.senhaService.busca(this.email).then((message) => {
+
+        console.log('message: ' + message);
+        this.emailEnviado = true;
+        this.emailIncorreto = false;
+        this.form.reset();
+
+      }).catch((error) => {
+
+        this.emailEnviado = false;
+        this.emailIncorreto = true;
+        console.log(error.status)
+        this.form.reset();
+      })
+
+      console.log(teste);
+
+      this.form.reset();
+      
+    } catch (error) {
+      console.log(error);
+    }
+  
   }
 
   temErro(campo: string) {

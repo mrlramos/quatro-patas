@@ -9,5 +9,6 @@
         <button type="submit" class="btn btn-success">Enviar</button>
         <br>
         <label class="envioEmail" *ngIf="emailEnviado == true">E-mail de recuperação de senha enviado para: <b>{{ email }}</b></label>
+        <label class="envioEmail" *ngIf="emailIncorreto == true">E-mail não encontrado: <b>{{ email }}</b></label>
     </form>
 </div>

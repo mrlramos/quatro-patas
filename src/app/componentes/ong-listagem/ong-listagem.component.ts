@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ong } from '../doador-detalhe/ong';
 import { casos } from '../doador-listagem/casos';
 import { OngListagemService } from './ong-listagem.service';
 
@@ -10,20 +11,15 @@ import { OngListagemService } from './ong-listagem.service';
 })
 export class OngListagemComponent implements OnInit {
 
-  ong: string;
-  casos: casos[]
+  ongNome: string = "ONG";
+  ong: any;
+  casos: casos[];
   idOng: any;
 
   constructor(private router: Router, private ongService: OngListagemService) { }
 
   ngOnInit(): void {
-    if (window.localStorage.length < 1) {
-      this.router.navigate(['/']);
-    } else {
-      this.ongService.getIdOng().subscribe(casos => this.idOng = casos);
-      this.ongService.getNomeOng().subscribe(casos => this.ong = casos);
-      this.ongService.getCasosPorOng(this.idOng).subscribe(casos => this.casos = casos);
-    }
+    this.comecoPagina();
   }
 
   btn_criar_caso(): void {
@@ -33,5 +29,48 @@ export class OngListagemComponent implements OnInit {
   deslogar() {
     window.localStorage.removeItem("user");
     this.router.navigate(['/']);
+  }
+
+  async comecoPagina() {
+
+    try {
+      if (window.localStorage.length < 1) {
+        this.router.navigate(['/']);
+      } else if (window.localStorage.getItem('user').split("@").length > 1) {
+        this.router.navigate(['/doador']);      
+      } else {
+
+        await this.ongService.getOngByLogin(window.localStorage.getItem('user')).then((retorno) => {
+
+          
+
+          console.log('retorno do getOngByLogin: ' +retorno);
+          this.ong = retorno;
+
+          this.ongNome = this.ong.nome;
+          console.log(this.ong.id);
+
+          this.ongService.getCasosPorOng(this.ong.id).then((retorno) => {
+
+            console.log(retorno);
+            this.casos = retorno;
+            console.log(this.casos);
+          }).catch((error) => {
+            console.log(error.status)
+          })
+        }).catch((error) => {
+          console.log(error.status)
+        })
+        
+        
+
+
+        
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    
   }
 }

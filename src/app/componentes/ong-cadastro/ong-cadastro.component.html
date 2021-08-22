@@ -21,25 +21,29 @@
         </h3>
     </div>
 
-    <form action="post">
+    <form #caso="ngForm" (ngSubmit)="onSubmitCaso(caso)">
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Título do caso" aria-describedby="basic-addon1">
+            <input id="titulo" name="titulo" type="text" class="form-control" 
+            placeholder="Título do caso" aria-describedby="basic-addon1"
+            required ngModel #titulo>
         </div>
         <div class="input-group mb-3">
-            <textarea id="desc" class="form-control" placeholder="Descreva o caso detalhadamente aqui" id="floatingTextarea"></textarea>
+            <textarea id="desc" name="desc" class="form-control" placeholder="Descreva o caso detalhadamente aqui" 
+            id="desc" required ngModel #desc></textarea>
         </div>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Valor em reais(R$)" aria-describedby="basic-addon1">
+            <input id="valor" name="valor" type="number" class="form-control" placeholder="Valor em reais(R$)" 
+            aria-describedby="basic-addon1" required ngModel #valor>
         </div>
         <div class="input-group mb-3">
             <label>Se possível, insira uma imagem do bichinho</label>
         </div>
             <div class="input-group mb-3">
-            <input type="file" class="form-control" (change)="onSelectFile($event)">
+            <input id="imagem" name="imagem" type="file" class="form-control" (change)="onSelectFile($event)" ngModel #imagem>
         </div>
         
         <button type="button" class="btn btn-secondary" (click)="btn_voltar()">Voltar</button>
-        <button type="button" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
 
 </div>
