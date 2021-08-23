@@ -12,8 +12,8 @@
             <br><br>
             <h3>Dados pessoais</h3>
             <label>Nome Completo:</label>
-            <input id="nome" type="text" class="form-control" name="nome" 
-            ngModel pattern="[a-zA-Z ]*" maxlength="55" required #nome>
+            <input id="nome" type="text" class="form-control" name="nome" [(value)]="limpaCampos"
+            ngModel pattern="^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" maxlength="55" required #nome>
             <br>
             <label>CPF:</label>
             <input class="form-control" name="cpf" ngModel 
@@ -24,24 +24,37 @@
             maxlength="11" ngModel required #celular>
             <br>
             <label>Data de nascimento:</label>
-            <input type="date" name="nascimento" class="form-control" 
-            ngModel required #nascimento>
+            <input type="date" name="data_nascimento" class="form-control" 
+            ngModel required #data_nascimento>
             <br>
             <label>Cidade:</label>
-            <input name="cidade" class="form-control" 
+            <input name="cidade" class="form-control" maxlength="55"
             ngModel required #cidade>
 
             <br><br>
 
             <h3>Dados para login</h3>
             <label>E-mail:</label>
-            <input name="email" class="form-control" 
+            <input name="email" class="form-control" maxlength="55"
             ngModel required #email>
             <br>
             <label>Senha:</label>
-            <input name="senha" type="password" maxlength="14" class="form-control" 
+            <input name="senha" type="password" minlength="6" maxlength="22" class="form-control" 
             ngModel required #senha>
             <br>
+
+            <div *ngFor="let item of camposInvalidosTela">
+                <p>{{ item.mensagem }}</p>
+            </div>
+
+            <div *ngIf="doadorCriado">
+                <p>Doador criado com sucesso! Parabéns, você está no caminho certo para se tornar um herói.</p>
+            </div>
+
+            <div *ngIf="emailExiste">
+                <p>Esse e-mail já está sendo utilizado.</p>
+            </div>
+            
             <button type="button" class="btn btn-secondary" (click)="btnVoltar()">Voltar</button>
             <button type="submit" class="btn btn-success">Cadastrar</button>
 
@@ -55,7 +68,7 @@
             <h3>Dados da organização</h3>
             <label>Nome:</label>
             <input id="nome" type="text" class="form-control" name="nome" 
-            ngModel pattern="[a-zA-Z ]*" maxlength="55" required #nome>
+            ngModel pattern="^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" maxlength="55" required #nome>
             <br>
             <label>Quantidade de animais:</label>
             <input id="qtdAnimais" class="form-control" name="qtdAnimais" 
@@ -67,18 +80,18 @@
             <br>
             <label>Estado:</label>
             <input id="estado" type="text" class="form-control" name="estado" 
-            ngModel minlength="2" maxlength="2" required #estado>
+            ngModel pattern="[a-zA-Z]{2}" minlength="2" maxlength="2" required #estado>
             <br>
             <label>Cidade:</label>
             <input id="cidade" type="text" class="form-control" name="cidade" 
-            ngModel pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*" maxlength="55" required #cidade>
+            ngModel pattern="^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" maxlength="55" required #cidade>
             <br>
             <label>Bairro:</label>
             <input id="bairro" type="text" class="form-control" name="bairro" 
-            ngModel pattern="[a-zA-Z ]*" maxlength="55" required #bairro>
+            ngModel pattern="^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" maxlength="55" required #bairro>
             <br>
             <label>Rua:</label>
-            <input id="rua" type="text" class="form-control" name="rua" 
+            <input id="rua" type="text" class="form-control" name="rua" pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*" 
             ngModel maxlength="22" required #rua>
             <br>
             <label>Número:</label>
@@ -86,7 +99,7 @@
             ngModel pattern="[0-9]*" maxlength="5" required #numero>
             <br>
             <label>Complemento:</label>
-            <input id="complemento" type="text" class="form-control" name="complemento" 
+            <input id="complemento" type="text" class="form-control" name="complemento" pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ0-9 ]*"
             ngModel maxlength="14" required #complemento>
             <br>
             <label>Celular:</label>
@@ -100,13 +113,27 @@
             <br>
             <h3>Dados para login</h3>
             <label>Login:</label>
-            <input id="login" type="text" class="form-control" name="login" 
+            <input id="login" type="text" class="form-control" name="login" pattern="^[a-zA-Z0-9]*$"
             ngModel maxlength="55" required #login>
             <br>
             <label>Senha:</label>
             <input id="senha" type="password" class="form-control" name="senha" 
             ngModel minlength="6" maxlength="14" required #senha>
             <br>
+
+            <div *ngFor="let item of camposInvalidosTelaOng">
+                <p>{{ item.mensagem }}</p>
+            </div>
+
+            <div *ngIf="ongCriada">
+                <p>Parabéns!! ONG criada com sucesso.</p>
+            </div>
+
+            <div *ngIf="loginExiste">
+                <p>Esse login já está sendo utilizado.</p>
+            </div>
+
+
             <button type="button" class="btn btn-secondary" (click)="btnVoltar()">Voltar</button>
             <button type="submit" class="btn btn-success">Cadastrar</button>
         </form>

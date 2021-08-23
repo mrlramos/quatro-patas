@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { delay } from 'rxjs/operators';
-import { ong } from '../doador-detalhe/ong';
+import { ong } from '../shared/model/ong';
 import { casos } from '../doador-listagem/casos';
 
 @Injectable({

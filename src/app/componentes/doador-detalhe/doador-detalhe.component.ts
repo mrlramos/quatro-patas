@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { delay } from 'rxjs/operators';
 import { casos } from '../doador-listagem/casos';
 import { DoadorDetalheService } from './doador-detalhe.service';
-import { ong } from './ong';
+import { ong } from '../shared/model/ong';
 
 import { DomSanitizer } from '@angular/platform-browser';
 

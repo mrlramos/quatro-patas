@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { casos } from '../doador-listagem/casos';
-import { ong } from './ong';
-import { delay } from 'rxjs/operators';
-
+import { ong } from '../shared/model/ong';
 
 @Injectable({
   providedIn: 'root'

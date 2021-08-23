@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ong } from '../doador-detalhe/ong';
 import { casos } from '../doador-listagem/casos';
 import { OngListagemService } from './ong-listagem.service';
 

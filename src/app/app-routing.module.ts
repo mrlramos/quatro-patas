@@ -37,6 +37,10 @@ const routes: Routes = [
   {
     path: 'doador/detalhe/:id',
     component: DoadorDetalheComponent
+  },
+  { //Página inexistente, redireciona para a listagem
+    path: 'doador/detalhe',
+    component: DoadorListagemComponent
   }
 ];
 

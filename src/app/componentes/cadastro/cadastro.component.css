@@ -28,6 +28,10 @@ button {
     margin-top: 10px;
 }
 
+p {
+    margin-top: 1%;
+}
+
 .ng-invalid.ng-touched:not(form) {
     border: 1px solid red;
 }

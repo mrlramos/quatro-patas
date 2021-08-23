@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router'
-import { email } from './email';
+import { email } from '../shared/model/email';
 import { SenhaService } from './senha.service';
 
 @Component({

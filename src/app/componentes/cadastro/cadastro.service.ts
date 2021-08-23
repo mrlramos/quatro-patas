@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpResponse } from '@angular/common/http'
 import { delay } from "rxjs/operators";
 
 @Injectable({
@@ -9,54 +9,36 @@ export class CadastroService {
 
   constructor(private http: HttpClient) { }
 
+  //DOADOR
   createDoador(doador) {
     console.log(doador);
-    console.log("service");
+    console.log("service doador");
 
-    return this.http.post('https://localhost:44335/api/doador', doador);
+    return this.http.post('https://localhost:44335/api/doador', doador, { responseType: 'text' }).pipe(delay(100)).toPromise();
   }
 
-  createOng(ongEndereco) {
-    console.log(ongEndereco);
-    console.log("service");
 
-    
+  //ONG
+  loginJaExiste(login) {
+    console.log(login);
+    console.log("service login");
 
-    return this.http.post('https://localhost:44335/api/endereco', ongEndereco);
+    return this.http.get('https://localhost:44335/api/ong/' + login).pipe(delay(100)).toPromise();;
   }
 
-  async test(ongEndereco) { 
-    console.log(ongEndereco);
-    console.log("service");
+  createEndereco(endereco) {
+    console.log(endereco);
+    console.log("service endereco");
 
-    var endereco = {
-        cep: ongEndereco.cep,
-        estado: ongEndereco.estado,
-        cidade: ongEndereco.cidade,
-        bairro: ongEndereco.bairro,
-        rua: ongEndereco.rua,
-        numero: 20,
-        complemento: ongEndereco.complemento
-    };
-
-    console.log("endereco: " + endereco);
-
-    var response = await this.http.post('https://localhost:44335/api/endereco', endereco).pipe(delay(100)).toPromise();
-
-    console.log("response: " + response);
-
-    var endereco2 = {
-      login: ongEndereco.login,
-      senha: ongEndereco.senha,
-      nome: ongEndereco.nome,
-      qtdAnimais: ongEndereco.qtdAnimais,
-      celular: ongEndereco.celular,
-      complemento: ongEndereco.email
-    };
-
-    var response2 = await this.http.post('https://localhost:44335/api/ong', endereco2).pipe(delay(100)).toPromise();
-
-
-    return response;
+    return this.http.post('https://localhost:44335/api/endereco', endereco, { responseType: 'text' }).pipe(delay(100)).toPromise();
   }
+
+  createOng(ong) {
+    console.log(ong);
+    console.log("service ong");
+
+    return this.http.post('https://localhost:44335/api/ong', ong, { responseType: 'text' }).pipe(delay(100)).toPromise();
+  }
+
+  
 }
