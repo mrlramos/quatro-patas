@@ -38,7 +38,15 @@ export class CadastroComponent implements OnInit {
     numero: null,
     complemento: null
   };
-  ong: ong;
+  ong = {
+    id_endereco: null,
+    login: null,
+    senha: null,
+    nome: null,
+    qtd_animais: null,
+    celular: null,
+    email: null
+  };
 
   constructor(private router: Router, private cadastroService: CadastroService) {
   }
@@ -63,9 +71,9 @@ export class CadastroComponent implements OnInit {
     
     if (this.validaCamposDoador(form)) {
 
-      await this.cadastroService.createOng(form.value).then((retorno) => {
+      await this.cadastroService.createDoador(form.value).then((retorno) => {
   
-        this.ongCriada = true;
+        this.doadorCriado = true;
         form.reset();
         
       }).catch((error: HttpErrorResponse) => {
@@ -154,52 +162,15 @@ export class CadastroComponent implements OnInit {
     }            
   }
 
-  async onSubmitOng(form) {
+  onSubmitOng(form) {
 
     try {
       this.loginExiste = false;
-    this.ongCriada = false;
+      this.ongCriada = false;
     
-    //this.validaCamposOng(form)
-    if (await this.validaCamposOng(form) || 1==1) {
+    if (this.validaCamposOng(form)) {
 
-      this.enderecoOng.cep = form.value.cep;
-      this.enderecoOng.estado = form.value.estado;
-      this.enderecoOng.cidade = form.value.cidade;
-      this.enderecoOng.bairro = form.value.bairro;
-      this.enderecoOng.rua = form.value.rua;
-      this.enderecoOng.numero = form.value.numero;
-      this.enderecoOng.complemento = form.value.complemento;
-
-      console.log(this.enderecoOng);
       
-
-      this.cadastroService.createEndereco(this.enderecoOng).then((retorno) => {
-        
-        console.log(retorno);
-        
-        //this.ong.id_endereco = retorno.value;
-        this.ong.login = form.value.login;
-        this.ong.senha = form.value.senha;
-        this.ong.nome = form.value.nome;
-        this.ong.qtd_animais = form.value.qtd_animais;
-        this.ong.celular = form.value.celular;
-        this.ong.email = form.value.email;
-
-
-
-        this.cadastroService.createOng(this.ong).then((retorno) => {
-          console.log(retorno);
-          
-
-          this.ongCriada = true;
-        }).catch((error: HttpErrorResponse) => {
-          console.log(error);         
-        })
-
-      }).catch((error: HttpErrorResponse) => {
-        console.log(error);
-      })
     }
 
     } catch (erro) {
@@ -237,7 +208,7 @@ export class CadastroComponent implements OnInit {
     if (!patternNome.test(form.value.nome)) {
       this.camposInvalidosOng.push({mensagem: "Nome inválido, utilize apenas letras e o espaço. Exemplo: João Guilherme"});
     } 
-    if (!patternQtdAnimais.test(form.value.qtdAnimais)) {
+    if (!patternQtdAnimais.test(form.value.qtd_animais)) {
       this.camposInvalidosOng.push({mensagem: "Quantidade de animais inválida, insira apenas números."});
     }
     if (!patternCep.test(form.value.cep)) {
@@ -275,11 +246,9 @@ export class CadastroComponent implements OnInit {
     
     if (this.camposInvalidosOng.length == 0) {
 
-      if (this.loginExisteMethod(form.value.login)) {
+      if (this.loginExisteMethod(form)) {
         return true;
-      }
-
-      // this.loginExisteMethod(form.value.login)      
+      } 
 
     } else {
 
@@ -298,18 +267,47 @@ export class CadastroComponent implements OnInit {
     }            
   }
 
-  // loginExisteMethod(login) {
-  //   this.cadastroService.loginJaExiste(login).subscribe(retorno => 
-  //     this.retornoLoginOng = retorno
-  //   );
-
-  //   console.log(this.retornoLoginOng);
-    
-  // }
-
-  loginExisteMethod(login): boolean {
-    this.cadastroService.loginJaExiste(login).then((retorno) => {
+  async loginExisteMethod(form) {
+     await this.cadastroService.loginJaExiste(form.value.login).then((retorno) => {
       console.log(retorno);
+
+      this.enderecoOng.cep = form.value.cep;
+      this.enderecoOng.estado = form.value.estado;
+      this.enderecoOng.cidade = form.value.cidade;
+      this.enderecoOng.bairro = form.value.bairro;
+      this.enderecoOng.rua = form.value.rua;
+      this.enderecoOng.numero = +form.value.numero;
+      this.enderecoOng.complemento = form.value.complemento;
+
+      console.log(this.enderecoOng);
+      
+
+      this.cadastroService.createEndereco(this.enderecoOng).then((retorno) => {
+        
+        console.log(retorno);
+        
+        this.ong.id_endereco = +retorno;
+        this.ong.login = form.value.login;
+        this.ong.senha = form.value.senha;
+        this.ong.nome = form.value.nome;
+        this.ong.qtd_animais = +form.value.qtd_animais;
+        this.ong.celular = form.value.celular;
+        this.ong.email = form.value.email;
+
+
+
+        this.cadastroService.createOng(this.ong).then((retorno) => {
+          console.log(retorno);
+          
+          form.reset();
+          this.ongCriada = true;
+        }).catch((error: HttpErrorResponse) => {
+          console.log(error);         
+        })
+
+      }).catch((error: HttpErrorResponse) => {
+        console.log(error);
+      })
 
       return true;
       
@@ -319,10 +317,9 @@ export class CadastroComponent implements OnInit {
         this.loginExiste = true;
       }   
 
+      console.log("retornou no error");
       return false;
-      
-    })
 
-    return false;
+    })    
   }
 }

@@ -19,11 +19,11 @@ export class CadastroService {
 
 
   //ONG
-  loginJaExiste(login) {
+  loginJaExiste(login: string): Promise<any> {
     console.log(login);
     console.log("service login");
 
-    return this.http.get('https://localhost:44335/api/ong/' + login).pipe(delay(100)).toPromise();;
+    return this.http.get('https://localhost:44335/api/ong/login/' + login).pipe(delay(100)).toPromise();;
   }
 
   createEndereco(endereco) {

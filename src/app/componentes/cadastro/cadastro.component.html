@@ -71,8 +71,8 @@
             ngModel pattern="^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" maxlength="55" required #nome>
             <br>
             <label>Quantidade de animais:</label>
-            <input id="qtdAnimais" class="form-control" name="qtdAnimais" 
-            ngModel pattern="[0-9]*" maxlength="4" required #qtdAnimais>
+            <input id="qtd_animais" class="form-control" name="qtd_animais" 
+            ngModel pattern="[0-9]*" maxlength="4" required #qtd_animais>
             <br>
             <label>CEP:</label>
             <input id="cep" class="form-control" name="cep" 
@@ -108,7 +108,7 @@
             <br>
             <label>E-mail:</label>
             <input id="email" type="text" class="form-control" name="email" 
-            ngModel maxlength="14" required email #email>
+            ngModel maxlength="55" required email #email>
             <br>
             <br>
             <h3>Dados para login</h3>
