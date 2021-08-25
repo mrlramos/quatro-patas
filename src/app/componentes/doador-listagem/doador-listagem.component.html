@@ -37,7 +37,7 @@
                     <h6 class="card-title"><b>Bichinho: </b> <p class="card-text"><img id=animal src="{{caso.imagem}}"/></p></h6>
                 </div>
                 <div class="col-md-1">
-                    <a title="Detalhes" routerLink="/doador/detalhe/{{ caso.id }}" routerLinkActive="active"><span class="material-icons">
+                    <a title="Detalhes" data="doador" (click)="paginaDetalhe(this.caso.id)" routerLinkActive="active"><span class="material-icons">
                         info
                     </span></a>
                 </div>

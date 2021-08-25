@@ -72,4 +72,17 @@ export class OngListagemComponent implements OnInit {
 
     
   }
+
+  async onDelete(casoId) {
+    console.log("chegou aqui");
+    console.log(casoId);
+    
+    await this.ongService.deleteOng(casoId).then((retorno) => {
+      console.log(retorno);
+      this.ngOnInit();
+
+    }).catch((error) => {
+      console.log(error.status)
+    })
+  }
 }

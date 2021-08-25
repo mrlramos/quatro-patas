@@ -76,6 +76,8 @@ export class CadastroComponent implements OnInit {
         this.doadorCriado = true;
         form.reset();
         
+        
+        
       }).catch((error: HttpErrorResponse) => {
         console.log(error);
   
@@ -85,6 +87,12 @@ export class CadastroComponent implements OnInit {
         
       })
     }
+
+    
+  }
+
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
   }
 
   validaCamposDoador(form): boolean {
@@ -99,11 +107,12 @@ export class CadastroComponent implements OnInit {
     var patternNome = new RegExp("^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$");
     var patternCpf = new RegExp("[0-9]{11}");
     var patternCelular = new RegExp("[0-9]{11}");
-    let patternNascimento = form.value.data_nascimento;
+    var patternNascimento = form.value.data_nascimento;
     var patternCidade = new RegExp("^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$");
     const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     var patternEmail = new RegExp(regex);
     form.value.email = form.value.email.toLowerCase();
+    var patternSenha = new RegExp("^[a-zA-Z0-9]{4,22}");
 
     
     if (!patternNome.test(form.value.nome)) {
@@ -130,8 +139,8 @@ export class CadastroComponent implements OnInit {
     var mm = +String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var ano = +today.getFullYear();    
     
-    if ((anoInserido > ano) || ((anoInserido <= ano) && (mesInserido > mm)) || 
-    ((anoInserido <= ano) && (mesInserido <= mm) && (diaInserido > dd)) ) {
+    if ((anoInserido > ano) || ((anoInserido == ano) && (mesInserido > mm)) || 
+    ((anoInserido == ano) && (mesInserido == mm) && (diaInserido > dd)) ) {
       this.camposInvalidos.push({mensagem: "Data inválida, insira uma data anterior a data atual!"});
     } else if (patternNascimento === '') {
       this.camposInvalidos.push({mensagem: "Data inválida, campo vazio!"});
@@ -144,6 +153,13 @@ export class CadastroComponent implements OnInit {
     if (!patternEmail.test(form.value.email)) {
       this.camposInvalidos.push({mensagem: "E-mail inválido!"});
     } 
+
+    if (!patternSenha.test(form.value.senha)) {
+      this.camposInvalidos.push({mensagem: "Senha inválida, insira no mínimo 4 caracteres."});
+    }
+
+    console.log(this.camposInvalidos.length);
+    
 
     if (this.camposInvalidos.length == 0) {
       return true;
@@ -203,6 +219,7 @@ export class CadastroComponent implements OnInit {
     var patternEmail = new RegExp(regex);
     form.value.email = form.value.email.toLowerCase();
     let patternLogin = new RegExp("^[a-zA-Z0-9]+$"); 
+    let patternSenha = new RegExp("^[a-zA-Z0-9]{4,22}"); 
 
     
     if (!patternNome.test(form.value.nome)) {
@@ -240,6 +257,9 @@ export class CadastroComponent implements OnInit {
     } 
     if (!patternLogin.test(form.value.login)) {
       this.camposInvalidosOng.push({mensagem: "Login inválido, insira apenas letras e números. Exemplo: dudu18051965"});
+    }
+    if (!patternSenha.test(form.value.senha)) {
+      this.camposInvalidosOng.push({mensagem: "Senha inválida, insira no mínimo 4 caracteres."});
     }
 
     console.log(this.camposInvalidosOng.length);

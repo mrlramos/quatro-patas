@@ -16,6 +16,7 @@ import { OngCadastroComponent } from './componentes/ong-cadastro/ong-cadastro.co
 import { DoadorListagemComponent } from './componentes/doador-listagem/doador-listagem.component';
 import { DoadorDetalheComponent } from './componentes/doador-detalhe/doador-detalhe.component';
 
+
 import { CadastroService } from './componentes/cadastro/cadastro.service';
 import { SenhaService } from './componentes/senha/senha.service';
 import { LoginService } from './componentes/login/login.service';
@@ -28,6 +29,8 @@ import { OngCadastroService } from './componentes/ong-cadastro/ong-cadastro.serv
 
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { DoadorDetalhePipe } from './componentes/doador-detalhe/doador-detalhe.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,8 @@ import { CommonModule } from '@angular/common';
     OngListagemComponent,
     OngCadastroComponent,
     DoadorListagemComponent,
-    DoadorDetalheComponent
+    DoadorDetalheComponent,
+    DoadorDetalhePipe
   ],
   imports: [
     BrowserModule,
@@ -58,7 +62,8 @@ import { CommonModule } from '@angular/common';
     DoadorListagemService,
     DoadorDetalheService,
     OngListagemService,
-    OngCadastroService
+    OngCadastroService,
+    BsModalService
   ],
   bootstrap: [AppComponent]
 })

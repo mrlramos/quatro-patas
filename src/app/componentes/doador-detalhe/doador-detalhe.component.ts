@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Pipe, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { casos } from '../doador-listagem/casos';
 import { DoadorDetalheService } from './doador-detalhe.service';
 import { ong } from '../shared/model/ong';
-
-import { DomSanitizer } from '@angular/platform-browser';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { DoadorListagemService } from '../doador-listagem/doador-listagem.service';
 
 @Component({
   selector: 'app-doador-detalhe',
@@ -12,6 +12,19 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./doador-detalhe.component.css']
 })
 export class DoadorDetalheComponent implements OnInit {
+
+  doador: any;
+
+  //Modal
+  whatsappModalRef: BsModalRef;
+  @ViewChild('whatsapp') whatsapp;
+
+  emailModalRef: BsModalRef;
+  @ViewChild('email') email;
+
+  config = {
+    animated: true
+  };
 
   caso: casos = {
     id: null,
@@ -37,7 +50,8 @@ export class DoadorDetalheComponent implements OnInit {
   constructor(private router: Router, 
     private route: ActivatedRoute,
     private service: DoadorDetalheService,
-    private domSanitizer: DomSanitizer) { }
+    private modalService: BsModalService,
+    private doadorListagemService: DoadorListagemService) { }
 
   ngOnInit(): void {
     if (window.localStorage.length < 1) {
@@ -46,6 +60,8 @@ export class DoadorDetalheComponent implements OnInit {
       this.router.navigate(['/ong']);
     }
 
+    this.doadorListagemService.getNomeDoador().subscribe(doador => this.doador = doador);
+    
     const id = this.route.snapshot.paramMap.get('id');
 
     this.service.listarCasosPorId(id).subscribe(casos => 
@@ -65,12 +81,19 @@ export class DoadorDetalheComponent implements OnInit {
     this.service.buscarOng(this.caso.id_ong).subscribe(ong => 
       this.contato = ong
     );
-
     
+
+    this.whatsappModalRef = this.modalService.show(this.whatsapp, this.config)
   }
 
-  mostraEmail() {
 
+
+  mostraEmail() {
+    this.service.buscarOng(this.caso.id_ong).subscribe(ong => 
+      this.contato = ong
+    );
+
+    this.emailModalRef = this.modalService.show(this.email, this.config)
   }
 
   deslogar() {

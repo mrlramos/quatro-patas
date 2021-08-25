@@ -5,7 +5,7 @@
             <h2>4 Patas</h2>
         </div>
         <div class="col">
-            Bem vindo, Doador
+            Bem vindo, {{ doador }}
         </div>
         <div class="col">
             <button type="button" class="btn btn-outline-danger" (click)="deslogar()"><span class="material-icons">
@@ -68,3 +68,20 @@
 
     </div>
 </div>
+
+<!-- MODAL WhatsApp-->
+<ng-template #whatsapp>
+    <div class="modal-body text-center">
+        <h1>{{this.contato.celular | celular}}</h1>
+        <button type="button" class="btn btn-primary" (click)="whatsappModalRef.hide()">Ok</button>
+    </div>
+</ng-template>
+
+<!-- MODAL E-mail-->
+<ng-template #email>
+    <div class="modal-body text-center">
+        <h1>{{ this.contato.email }}</h1>
+        <button type="button" class="btn btn-primary" (click)="emailModalRef.hide()">Ok</button>
+    </div>
+</ng-template>
+

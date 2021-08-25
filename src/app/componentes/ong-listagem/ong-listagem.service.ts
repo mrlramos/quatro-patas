@@ -51,4 +51,14 @@ export class OngListagemService {
     return retorno;
   }
 
+  deleteOng(id: number) {
+    var retorno;
+
+    retorno = this.http.delete('https://localhost:44335/api/caso/' + id).pipe(delay(100)).toPromise();
+
+    console.log(retorno);
+
+    return retorno;
+  }
+
 }

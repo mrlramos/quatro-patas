@@ -28,6 +28,12 @@ export class DoadorListagemComponent implements OnInit {
     }
   }
 
+  paginaDetalhe(id) {
+    this.router.navigate(['/doador/detalhe/' + id], {state: {doador: this.doador }});
+  }
+
+  // routerLink="/doador/detalhe/{{ caso.id }}"
+
   deslogar() {
     window.localStorage.removeItem("user");
     this.router.navigate(['/']);
