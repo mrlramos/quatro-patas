@@ -16,8 +16,6 @@ export class OngListagemService {
 
     retorno = this.http.get<ong>('https://localhost:44335/api/ong/nome/' + login).pipe(delay(100)).toPromise();
 
-    console.log(retorno);
-
     return retorno;
   }
 
@@ -46,8 +44,6 @@ export class OngListagemService {
 
     retorno = this.http.get<casos[]>('https://localhost:44335/api/caso/ong/' + idOng).pipe(delay(100)).toPromise();
 
-    console.log(retorno);
-
     return retorno;
   }
 
@@ -55,8 +51,6 @@ export class OngListagemService {
     var retorno;
 
     retorno = this.http.delete('https://localhost:44335/api/caso/' + id).pipe(delay(100)).toPromise();
-
-    console.log(retorno);
 
     return retorno;
   }

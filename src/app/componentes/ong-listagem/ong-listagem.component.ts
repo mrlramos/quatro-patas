@@ -41,48 +41,29 @@ export class OngListagemComponent implements OnInit {
 
         await this.ongService.getOngByLogin(window.localStorage.getItem('user')).then((retorno) => {
 
-          
-
-          console.log('retorno do getOngByLogin: ' +retorno);
           this.ong = retorno;
 
           this.ongNome = this.ong.nome;
-          console.log(this.ong.id);
 
           this.ongService.getCasosPorOng(this.ong.id).then((retorno) => {
-
-            console.log(retorno);
+            
             this.casos = retorno;
-            console.log(this.casos);
+
           }).catch((error) => {
-            console.log(error.status)
           })
         }).catch((error) => {
-          console.log(error.status)
         })
-        
-        
-
-
         
       }
     } catch (error) {
-      console.log(error);
     }
-
-    
   }
 
-  async onDelete(casoId) {
-    console.log("chegou aqui");
-    console.log(casoId);
-    
+  async onDelete(casoId) {    
     await this.ongService.deleteOng(casoId).then((retorno) => {
-      console.log(retorno);
       this.ngOnInit();
 
     }).catch((error) => {
-      console.log(error.status)
     })
   }
 }

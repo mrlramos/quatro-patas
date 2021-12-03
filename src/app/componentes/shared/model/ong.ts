@@ -3,7 +3,7 @@ export interface ong {
     id_endereco: number,
     login: number,
     senha: string,
-    nome: number,
+    nome: string,
     qtd_animais: string,
     celular: string,
     email: string

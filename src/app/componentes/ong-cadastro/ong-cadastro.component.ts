@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { casos } from '../doador-listagem/casos';
 import { OngListagemService } from '../ong-listagem/ong-listagem.service';
 import { OngCadastroService } from './ong-cadastro.service';
 
@@ -13,6 +12,7 @@ export class OngCadastroComponent implements OnInit {
 
   url: any;
   imagem64: any;
+  ongNome: string;
 
   caso: any = {
     id_ong: null,
@@ -25,7 +25,8 @@ export class OngCadastroComponent implements OnInit {
 
   ong_id: number;
 
-  constructor(private router: Router, private ongCadastroService: OngCadastroService,
+  constructor(private router: Router, 
+    private ongCadastroService: OngCadastroService,
     private ongListagemService: OngListagemService) { }
 
   ngOnInit(): void {
@@ -34,21 +35,26 @@ export class OngCadastroComponent implements OnInit {
     } else if (window.localStorage.getItem('user').split("@").length > 1) {
       this.router.navigate(['/doador']);
     }
+
+    this.ongListagemService.getOngByLogin(window.localStorage.getItem('user')).then((retorno) => {
+      this.ongNome = retorno.nome;
+      
+    }).catch((error) => {
+    })
   }
 
   btn_voltar(): void {
     this.router.navigate(['/ong']);
   }
 
-  onSelectFile(event) { // called each time file input changes
+  onSelectFile(event) { 
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.readAsDataURL(event.target.files[0]); 
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event) => { 
       this.url = event.target.result;
-      //console.log(this.url);
       this.salvaImagem64(this.url);
       }
     }
@@ -59,7 +65,6 @@ export class OngCadastroComponent implements OnInit {
     await this.ongListagemService.getOngByLogin(window.localStorage.getItem('user')).then((retorno) => {
       this.ong_id = retorno.id;
     }).catch((error) => {
-      //console.log(error.status)
     })
 
     this.caso.id_ong = this.ong_id
@@ -69,14 +74,11 @@ export class OngCadastroComponent implements OnInit {
     this.caso.descricao = caso.value.desc;
     this.caso.imagem = this.imagem64;
 
-    //console.log(this.caso);
-
     await this.ongCadastroService.criaCaso(this.caso).then((retorno) => {
 
       this.router.navigate(['/ong']);
 
     }).catch((error) => {
-      //console.log(error.status)
     })
   }
 
